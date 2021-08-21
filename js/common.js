@@ -11,11 +11,28 @@ $(function() {
 		aldvBurger.classList.toggle('aldv-burger_close');
 	}
 
+	let mobileNav = document.querySelector('.aldv-logo_mobile');
+	let winPos = window.pageYOffset;
+	if (winPos > 10) {
+		mobileNav.classList.add('aldv-logo_mobile_scrolled');
+	} else {
+		mobileNav.classList.remove('aldv-logo_mobile_scrolled');
+	}
+	document.addEventListener('scroll', function() {
+		let winPos = window.pageYOffset;
+		if (winPos > 10) {
+			mobileNav.classList.add('aldv-logo_mobile_scrolled');
+		} else {
+			mobileNav.classList.remove('aldv-logo_mobile_scrolled');
+		}
+
+	});
+
 	aldvBurger.addEventListener('click', function(e) {
 		e.stopPropagation;
 		menuToggle(); 
 		burgerTransform();
-		
+		mobileNav.classList.add('aldv-logo_mobile_scrolled');
 	});
 
 	document.addEventListener('click', e => {
@@ -64,6 +81,7 @@ $(function() {
 				});
 			}
 		}
+		console.log(winW);
 	});
 	let menu = document.querySelector('.aldv-navbar__nav');
 	let disScrolled = menu.getBoundingClientRect().top;
@@ -76,16 +94,7 @@ $(function() {
 			menu.classList.remove('aldv-nav-fixed');
 		} 
 	});
-	let mobileNav = document.querySelector('.aldv-logo_mobile')
-	document.addEventListener('scroll', function() {
-		let winPos = window.pageYOffset;
-		if (winPos > 10) {
-			mobileNav.classList.add('aldv-logo_mobile_scrolled');
-		} else {
-			mobileNav.classList.remove('aldv-logo_mobile_scrolled');
-		}
-
-	});
+	
 	
 		
 
